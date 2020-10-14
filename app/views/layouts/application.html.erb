@@ -10,11 +10,15 @@
   </head>
 
   <body>
+    <header>
+      <% if user_signed_in? %>
+        <%= render 'layouts/login_user_header' %>
+      <% else %>
+        <%= render 'layouts/not_login_user_header' %>
+      <% end %>
+    </header><!-- /header -->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <header>
-      
-    </header><!-- /header -->
     <%= yield %>
   </body>
 </html>
