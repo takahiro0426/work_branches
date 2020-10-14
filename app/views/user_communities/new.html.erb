@@ -1,0 +1,13 @@
+<%= current_user.name %>
+<%= form_with model: @key, url: user_communities_path, local: true do |f| %>
+
+  <div class="field">
+    <%= f.label :keyの入力 %><br />
+    <%= f.text_field :community_key, autofocus: true %>
+  </div>
+
+  <div class="actions">
+  	<%= f.label :コミュニティーに参加する! %><br />
+    <%= f.submit "コミュニティー参加" %>
+  </div>
+<% end %>
