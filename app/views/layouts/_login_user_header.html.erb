@@ -9,6 +9,16 @@
       <li class="nav-item active">
         <%= link_to "マイページ", edit_user_registration_path, class: "nav-link" %><span class="sr-only">(current)</span>
       </li>
+      <li class="nav-item active">
+        <%= link_to "コミュニティ一覧", user_communities_path, class: "nav-link" %><span class="sr-only">(current)</span>
+      </li>
+      <li class="nav-item active">
+        <%= link_to "コミュニティに参加する", new_user_community_path, class: "nav-link" %><span class="sr-only">(current)</span>
+      </li>
+      <li class="nav-item active">
+        <%= link_to "コミュニティを作る", new_community_path, class: "nav-link" %><span class="sr-only">(current)</span>
+      </li>
+
       <li class="nav-item">
         <%= link_to "ログアウト", destroy_user_session_path, class: "nav-link", method: :delete %>
       </li>

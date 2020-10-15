@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  community: one
+  image_id: MyString
+  tag_id: 1
+  title: MyString
+  caption: MyText
+
+two:
+  user: two
+  community: two
+  image_id: MyString
+  tag_id: 1
+  title: MyString
+  caption: MyText
