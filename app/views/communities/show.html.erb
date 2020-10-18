@@ -1,7 +1,39 @@
-<h1>Communities#show</h1>
-<p>Find me in app/views/communities/show.html.erb</p>
 <%= @community.community_name %>
+<input class="form-control" placeholder="<%= @community.community_key %>" readonly>
 <%= @community.community_key %>
 <%= @community.community_info %>
-<%= link_to "参加中のコミュニティー", user_communities_path %>
-<%= link_to "新しいコミュニティーに参加", new_user_community_path %>
+
+<% @member_names.each do |member_name| %>
+<%= member_name.name %>
+<% end %>
+<% @posts.each do |post| %>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h2 class="display-9"><%= post.title %></h2>
+    <p class="lead"><%= post.tag_id %></p>
+    <p class="lead"><%= post.caption %></p>
+    <p class="lead"><%= post.user.name %></p>
+  </div>
+</div>
+<% end %>
+<div class="container">
+
+</div><!-- /.container -->
+<%= form_with model: @new_post, url: community_posts_path, local: true do |f| %>
+
+  <div class="field">
+    <%= f.label :タイトル %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :投稿内容を入力 %><br />
+    <%= f.text_area :caption %>
+  </div>
+
+  <%= f.hidden_field :community_id, value: @community.id %>
+  <div class="actions">
+    <%= f.label :投稿する! %><br />
+    <%= f.submit "共有する" %>
+  </div>
+<% end %>

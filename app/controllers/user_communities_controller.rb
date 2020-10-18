@@ -1,11 +1,10 @@
 class UserCommunitiesController < ApplicationController
 
 	def index
-		registered = current_user.user_communities
-		@communities = Community.all
 	end
 
 	def show
+
 	end
 
 	def edit
@@ -21,7 +20,6 @@ class UserCommunitiesController < ApplicationController
 		user_community.user_id = current_user.id
 		user_community.community_id = community.id
 		user_community.is_role = 3
-
 		user_community.save
 		redirect_to user_communities_path
 	end

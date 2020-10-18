@@ -5,6 +5,10 @@ class CommunitiesController < ApplicationController
 
 	def show
 		@community = Community.find(params[:id])
+		@members = @community.user_communities.includes(:user)
+		@member_names = User.where(id: @members.pluck(:user_id))
+		@new_post = CommunityPost.new
+		@posts = CommunityPost.includes(:community)
 	end
 
 	def new
@@ -13,8 +17,14 @@ class CommunitiesController < ApplicationController
 	end
 
 	def create
-		if @community = Community.create(community_params)
-			redirect_to community_path(@community)
+		community = Community.new(community_params)
+		if community.save
+			user_community = UserCommunity.new
+			user_community.user_id = current_user.id
+			user_community.community_id = community.id
+			user_community.is_role = 3
+			user_community.save
+			redirect_to community_path(community)
 		else
 			@key = rand(100000_999999).to_s
 			@community = Community.new

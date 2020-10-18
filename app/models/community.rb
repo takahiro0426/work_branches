@@ -1,4 +1,4 @@
 class Community < ApplicationRecord
-	belongs_to :user_community, optional: true
-
+	has_many :community_posts
+	has_many :user_communities
 end

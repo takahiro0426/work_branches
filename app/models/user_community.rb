@@ -1,4 +1,4 @@
 class UserCommunity < ApplicationRecord
 	belongs_to :user
-	has_many :communities
+	belongs_to :community
 end
