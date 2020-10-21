@@ -12,3 +12,47 @@
  *
  */
 @import "bootstrap";
+
+body {
+}
+
+header {
+}
+
+.login_menu {
+	position: relative;
+	padding-bottom: 220px;
+}
+
+.sidebar_fixed {
+	position: sticky;
+}
+
+
+footer {
+}
+
+.post_form {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	z-index: 2;
+}
+
+.sticky-top{
+	padding-top: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

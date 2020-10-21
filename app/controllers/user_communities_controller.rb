@@ -1,5 +1,5 @@
 class UserCommunitiesController < ApplicationController
-
+	before_action :authenticate_user!
 	def index
 	end
 
@@ -24,8 +24,12 @@ class UserCommunitiesController < ApplicationController
 		redirect_to user_communities_path
 	end
 
-
-
+	# ログイン時の@started_sessionを特定するための処理
+	def update
+		@session_community = Community.find(params[:id])
+		@session_community_update = current_user.user_communities.find_by(community_id: @session_community).touch
+		redirect_to community_path(params[:id])
+	end
 
 
 

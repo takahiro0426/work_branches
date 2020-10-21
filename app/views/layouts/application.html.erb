@@ -10,15 +10,34 @@
   </head>
 
   <body>
-    <header>
-      <% if user_signed_in? %>
-        <%= render 'layouts/login_user_header' %>
-      <% else %>
-        <%= render 'layouts/not_login_user_header' %>
-      <% end %>
-    </header><!-- /header -->
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <% if user_signed_in? %>
+      <%= render 'layouts/login_user' %>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3 bg-light" id="sticky-sidebar">
+            <% if @community %>
+              <%= render partial: 'communities/side_menu' %>
+            <% end %>
+          </div>
+          <main class="col-lg-9 p-2">
+            <div class="login_menu">
+              <p class="notice"><%= notice %></p>
+              <p class="alert"><%= alert %></p>
+              <%= yield %>
+            </div>
+          </main>
+        </div>
+      </div>
+    <% else %>
+      <%= render 'layouts/not_login_user' %>
+      <main>
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+        <%= yield %>
+      </main>
+    <% end %>
+    <footer class="col-lg-3 fixed-bottom">
+          <p>© Work-branches</p>
+    </footer>
   </body>
 </html>
