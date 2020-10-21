@@ -1,39 +1,21 @@
-<%= @community.community_name %>
-<input class="form-control" placeholder="<%= @community.community_key %>" readonly>
-<%= @community.community_key %>
-<%= @community.community_info %>
 
-<% @member_names.each do |member_name| %>
-<%= member_name.name %>
-<% end %>
 <% @posts.each do |post| %>
-<div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid bg-white border rounded-left pt-2">
   <div class="container">
-    <h2 class="display-9"><%= post.title %></h2>
+    <h4>ーー<%= post.created_at.strftime('%Y/%m/%d') %>ーー</h4>
+    <div class="row border-top border-bottom">
+    <h4 class="col-lg-7 mb-0">【<%= post.title %>】</h4><h5 class="col-lg-4 offset-lg-1 mb-0"><%= post.user.name %> <small class="text-muted"><%= post.created_at.strftime('%H:%M') %></small></h5>
+    </div>
+    <div class="row pt-3">
+      <div class="col-lg-7">
+    <%= attachment_image_tag post, :image, :fill, 600, 300 %>
+  </div>
+  <div class="col-lg-4 offset-lg-1">
+    <p><%= post.caption %></p>
+  </div>
+  </div>
     <p class="lead"><%= post.tag_id %></p>
-    <p class="lead"><%= post.caption %></p>
-    <p class="lead"><%= post.user.name %></p>
   </div>
 </div>
 <% end %>
-<div class="container">
-
-</div><!-- /.container -->
-<%= form_with model: @new_post, url: community_posts_path, local: true do |f| %>
-
-  <div class="field">
-    <%= f.label :タイトル %><br />
-    <%= f.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= f.label :投稿内容を入力 %><br />
-    <%= f.text_area :caption %>
-  </div>
-
-  <%= f.hidden_field :community_id, value: @community.id %>
-  <div class="actions">
-    <%= f.label :投稿する! %><br />
-    <%= f.submit "共有する" %>
-  </div>
-<% end %>
+<%= render partial: 'community_posts/new_community_post' %>

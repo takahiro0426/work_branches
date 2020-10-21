@@ -4,7 +4,7 @@ class User < ApplicationRecord
 	devise :database_authenticatable, :registerable,
 	     :recoverable, :rememberable, :validatable
 
-	has_many :user_communities
-	has_many :community_posts
+	has_many :user_communities, dependent: :destroy
+	has_many :community_posts, dependent: :destroy
 	enum role: { guest: 1, member: 2, host: 3 }
 end

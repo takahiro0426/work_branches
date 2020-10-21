@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-
+	before_action :authenticate_user!
 	def index
 	end
 
@@ -7,8 +7,8 @@ class CommunitiesController < ApplicationController
 		@community = Community.find(params[:id])
 		@members = @community.user_communities.includes(:user)
 		@member_names = User.where(id: @members.pluck(:user_id))
+		@posts = @community.community_posts.order(created_at: :desc)
 		@new_post = CommunityPost.new
-		@posts = CommunityPost.includes(:community)
 	end
 
 	def new

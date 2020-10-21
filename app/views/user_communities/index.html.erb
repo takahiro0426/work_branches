@@ -2,5 +2,5 @@
 <%= link_to "コミュニティーを作る", new_community_path %>
 <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 <% @user_communities.each do |user_community| %>
-	<%= link_to user_community.community_name, community_path(user_community) %>
+	<%= link_to user_community.community_name, user_community_path(user_community), :method => :patch %>
 <% end %>

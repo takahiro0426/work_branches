@@ -18,10 +18,11 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
+  # アカウント切り替え時のuser_communities#updateの処理を元に、@started_sessionを特定
    protected
-
   def after_sign_in_path_for(resource)
-    user_community_path(resource)
+    @started_session = current_user.user_communities.order(:updated_at).last
+    community_path(@started_session.community_id)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
