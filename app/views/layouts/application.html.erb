@@ -4,25 +4,21 @@
     <title>WorkTable</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <% if user_signed_in? %>
-      <%= render 'layouts/login_user' %>
       <div class="container-fluid">
+        <%= render 'layouts/login_user' %>
         <div class="row">
           <div class="col-lg-3 bg-light" id="sticky-sidebar">
             <% if @community %>
               <%= render partial: 'communities/side_menu' %>
             <% end %>
           </div>
-          <main class="col-lg-9 p-2">
+          <main class="col-lg-9">
             <div class="login_menu">
-              <p class="notice"><%= notice %></p>
-              <p class="alert"><%= alert %></p>
               <%= yield %>
             </div>
           </main>
@@ -31,12 +27,14 @@
     <% else %>
       <%= render 'layouts/not_login_user' %>
       <main>
+        <div class="container-fluid">
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
         <%= yield %>
+      </div>
       </main>
     <% end %>
-    <footer class="col-lg-3 fixed-bottom">
+    <footer class="col-lg-3 fixed-bottom text-center bg-light">
           <p>© Work-branches</p>
     </footer>
   </body>

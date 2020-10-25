@@ -11,10 +11,10 @@
           <%= link_to "マイページ", edit_user_registration_path, class: "nav-link" %><span class="sr-only">(current)</span>
         </li>
         <li class="nav-item active">
-          <%= link_to "コミュニティに参加する", new_user_community_path, class: "nav-link" %><span class="sr-only">(current)</span>
+          <%= link_to "参加する", new_user_community_path, class: "nav-link" %><span class="sr-only">(current)</span>
         </li>
         <li class="nav-item active">
-          <%= link_to "コミュニティを作る", new_community_path, class: "nav-link" %><span class="sr-only">(current)</span>
+          <%= link_to "作る", new_community_path, class: "nav-link" %><span class="sr-only">(current)</span>
         </li>
 
         <li class="nav-item">
@@ -22,11 +22,12 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            参加中のコミュニティ
+            参加中
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <% @user_communities.first(3).each do |user_community| %>
-            <%= link_to user_community.community_name, user_community_path(user_community), :method => :patch, class: "dropdown-item" %>
+            <% @user_communities.first(5).each do |user_community| %>
+            <!-- コミュニティの切り替えを管理するため、#pudateへ飛ばしています -->
+            <%= link_to user_community.community_name, user_community_path(user_community), :method => :patch, class: "dropdown-item d-block text-truncate" %>
             <% end %>
             <div class="dropdown-divider"></div>
             <strong><%= link_to "すべて表示（全#{@user_communities.count}件）", user_communities_path, class: "dropdown-item" %></strong>
@@ -37,8 +38,8 @@
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <input class="form-control mr-lg-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-lg-0" type="submit">Search</button>
       </form>
     </div>
   </nav>

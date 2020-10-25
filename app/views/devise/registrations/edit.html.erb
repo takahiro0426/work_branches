@@ -1,43 +1,54 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+<div class="edit">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="card">
+      <article class="card-body">
+          <h4 class="card-title text-center mb-4 mt-1">登録情報を変更する</h4>
+          <hr>
+          <p class="text-success text-center">変更したい項目を書き換えて下さい</p>
+          <form>
+            <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> メールアドレス 　</span>
+                 </div>
+                <%= f.email_field :email, :placeholder => "メールアドレス", autofocus: true, autocomplete: "email" ,class: "form-control" %>
+            </div>
+            </div>
+            <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> ニックネーム　　 </span>
+                 </div>
+                <%= f.text_field :name, :placeholder => "ニックネーム", autofocus: true, autocomplete: "neme" ,class: "form-control" %>
+            </div>
+            </div>
+            <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> 新しいパスワード </span>
+                 </div>
+                <%= f.password_field :password, :placeholder => "新しいパスワード", autocomplete: "new-password", class: "form-control" %>
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> 新しいパスワードの確認 </span>
+                 </div>
+                <%= f.password_field :password_confirmation, :placeholder => "もう一度入力してください", autocomplete: "new-password", class: "form-control" %>
+            </div>
+            </div>
+            <p class="text-danger text-center">変更した項目を確認してパスワードを入力して下さい</p>
+            <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> 現在のパスワード </span>
+                 </div>
+                <%= f.password_field :current_password, :placeholder => "現在のパスワード", autocomplete: "current-password", class: "form-control" %>
+            </div>
+            </div>
+            <div class="form-group">
+               <%= f.submit "登録情報を編入", class: "btn btn-primary btn-block" %>
+            </div>
+          </form>
+      </article>
+    </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
