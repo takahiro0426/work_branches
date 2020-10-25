@@ -1,26 +1,37 @@
-<h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="log_in col-lg-8 offset-lg-2">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="card">
+      <article class="card-body">
+          <h4 class="card-title text-center mb-4 mt-1">ログイン</h4>
+          <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> メールアドレス 　</span>
+                 </div>
+                <%= f.email_field :email, :placeholder => "メールアドレス", autofocus: true, autocomplete: "email" ,class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> パスワード　　 　 </span>
+                 </div>
+                <%= f.password_field :password, :placeholder => "パスワード", autocomplete: "current-password", class: "form-control" %>
+            </div>
+          </div>
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+          <div class="form-group">
+             <%= f.submit "ログイン", class: "btn btn-primary btn-block" %>
+          </div>
+          <p class="text-center"><a href="#" class="btn">Forgot password?</a></p>
+        <%= link_to "新規会員登録", new_registration_path(resource_name), class: "btn btn-success btn-block" %>
+      </article>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

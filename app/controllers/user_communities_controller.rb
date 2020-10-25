@@ -24,7 +24,7 @@ class UserCommunitiesController < ApplicationController
 		redirect_to user_communities_path
 	end
 
-	# ログイン時の@started_sessionを特定するための処理
+	# community切り替え時の処理（ログイン時に@started_sessionを特定するため）
 	def update
 		@session_community = Community.find(params[:id])
 		@session_community_update = current_user.user_communities.find_by(community_id: @session_community).touch
