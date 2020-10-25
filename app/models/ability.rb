@@ -9,7 +9,6 @@ class Ability
         can :manage, :all
     elsif user.member?
         can :read, :all
-        if 
     else
         can :read, :all
     end
