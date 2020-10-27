@@ -1,13 +1,22 @@
-<%= current_user.name %>
-<%= form_with model: @key, url: user_communities_path, local: true do |f| %>
-
-  <div class="field">
-    <%= f.label :keyの入力 %><br />
-    <%= f.text_field :community_key, autofocus: true %>
-  </div>
-
-  <div class="actions">
-  	<%= f.label :コミュニティーに参加する! %><br />
-    <%= f.submit "コミュニティー参加" %>
-  </div>
-<% end %>
+<div class="log_in col-lg-8 offset-lg-2">
+	<%= form_with model: @key, url: user_communities_path, local: true do |f| %>
+    <div class="card">
+    	<article class="card-body">
+      	<h4 class="card-title text-center mb-4 mt-1">KEYを入力</h4>
+      	<hr>
+      	  <p class="text-success text-center">参加するコミュニティのkeyを入力して下さい</p>
+		  	<div class="form-group">
+		      <div class="input-group">
+	          <div class="input-group-prepend">
+	            <span class="input-group-text"> コミュニティーのKEY </span>
+	          </div>
+	          <%= f.text_field :community_key, autofocus: true, class: "form-control" %>
+		      </div>
+		    </div>
+		    <div class="form-group">
+					<%= f.submit "コミュニティーに参加", class: "btn btn-success btn-block" %>
+				</div>
+			</article>
+		</div>
+	<% end %>
+</div>

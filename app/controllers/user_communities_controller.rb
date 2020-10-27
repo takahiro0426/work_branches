@@ -11,17 +11,27 @@ class UserCommunitiesController < ApplicationController
 	end
 
 	def new
-		@user_community = UserCommunity.new
+		@repuest_community = UserCommunity.new
 	end
 
 	def create
-		community = Community.find_by(community_key: params[:community_key])
-		user_community = UserCommunity.new
-		user_community.user_id = current_user.id
-		user_community.community_id = community.id
-		user_community.is_role = 3
-		user_community.save
-		redirect_to user_communities_path
+			request_community = Community.find_by(community_key: params[:community_key])
+		if @user_communities.include?(request_community)
+			@repuest_community = UserCommunity.new
+			flash.now[:danger] = "参加済みのコミュニティーです"
+			render :new
+		elsif params[:community_key].blank?
+			@repuest_community = UserCommunity.new
+			flash.now[:danger] = "keyを入力して下さい"
+			render :new
+		else
+			user_community = UserCommunity.new
+			user_community.user_id = current_user.id
+			user_community.community_id = request_community.id
+			user_community.is_role = 3
+			user_community.save
+			redirect_to user_communities_path, success: "【#{request_community.community_name}】に参加しました！"
+		end
 	end
 
 	# community切り替え時の処理（ログイン時に@started_sessionを特定するため）

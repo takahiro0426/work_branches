@@ -1,27 +1,26 @@
-<div class="sticky-top">
-	<h4 class="text-lg-center"><strong><%= @community.community_name %></strong></h4>
-	<p class="text-lg-center">[community key]</p>
-	<p class="text-lg-center form-control placeholder"><%= @community.community_key %></p>
-	<% if @select_post %>
-		<h5>【<%= @select_post.title %>】</h5>
+
+<h4 class="text-lg-center"><strong><%= @community.community_name %></strong></h4>
+<p class="text-lg-center">[community key]</p>
+<p class="text-lg-center form-control placeholder"><%= @community.community_key %></p>
+<% if @select_post %>
+	<h5>【<%= @select_post.title %>】</h5>
 		<div class="border-top border-bottom">
-		    <p><%= @select_post.user.name %>
-		    <small class="text-muted"><%= @select_post.created_at.strftime('%Y/%m/%d %H:%M') %></small></p>
+	    <p><%= @select_post.user.name %>
+	    <small class="text-muted"><%= @select_post.created_at.strftime('%Y/%m/%d %H:%M') %></small></p>
 		</div>
-		<div class="bg-white border rounded-left border-success">
-		    <%= form_with model: @new_comment, url: communities_path, local: true do |f| %>
-		        <%= f.text_field :comment, class: "form-control" %>
-		        <%= f.submit "コメント",class: "btn btn-outline-success btn-block" %>
-		        <%= f.hidden_field :community_post_id, value: @select_post.id %>
-		        <%= f.hidden_field :community_id, value: @community.id %>
-		        <!-- community.idはredirect先の引数として使用する -->
-	   	 	<% end %>
-		</div>
-		<%= link_to "戻る", community_path(@community) %>
-	<% else %>
-		<%= @community.community_info %>
-		<% @members.each do |member| %>
+	<div class="bg-white border rounded-left border-success">
+    <%= form_with model: @new_comment, url: communities_path, local: true do |f| %>
+      <%= f.text_field :comment, class: "form-control" %>
+      <%= f.submit "コメント",class: "btn btn-outline-success btn-block" %>
+      <%= f.hidden_field :community_post_id, value: @select_post.id %>
+      <%= f.hidden_field :community_id, value: @community.id %>
+      <!-- community.idはredirect先の引数として使用する -->
+ 	 	<% end %>
+	</div>
+	<%= link_to "コメントをやめる", community_path(@community) %>
+<% else %>
+	<div class="text-justify"><%= @community.community_info %></div>
+	<% @members.each do |member| %>
 		<%= member.name %>
-		<% end %>
 	<% end %>
-</div>
+<% end %>

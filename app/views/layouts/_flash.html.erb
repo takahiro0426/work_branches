@@ -1,0 +1,6 @@
+<!-- bootstrapで装飾したflash_messageを表示 -->
+<% flash.each do |key, value| %>
+   <p class="alert alert-<%= key %>">
+     <%= value %>
+   </p>
+<% end %>

@@ -1,8 +1,13 @@
+<div class="col-lg-4 offset-lg-4">
+  <%= paginate @posts %>
+</div>
 <% if params[:post_community_id] %>
-  <%= render 'show_select_post' %>
+  <%= render 'select_post' %>
 <% end %>
+
 <% @posts.each do |post| %>
-  <%= link_to community_path(@community, post_community_id: post.id), class: "btn btn-block card bg-white border rounded mb-4" do %>
+  <div class="card mb-4">
+    <%= link_to community_path(@community, post_community_id: post.id), class: "card-body text-dark bg-light border rounded" do %>
       <h4>ーー<%= post.created_at.strftime('%Y/%m/%d') %>ーー</h4>
       <div class="border-top border-bottom">
         <div class="row">
@@ -12,8 +17,7 @@
       </div>
       <div class="row pt-3">
         <div class="col-lg-7">
-          <%= post.caption %>
-          <%= attachment_image_tag post, :image, class:"attachment_image" %>
+          <%= attachment_image_tag post, :image, format: 'jpeg', class: "attachment_image" %>
         </div>
         <div class="col-lg-5">
           <% post.post_comments.each do |post_comment| %>
@@ -21,8 +25,13 @@
           <% end %>
         </div>
       </div>
-  <% end %>
-  <% unless params[:post_community_id] %>
-    <%= render 'community_post_form' %>
-  <% end %>
+      <div class="col-lg-12">
+        <p><%= post.caption %><p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<% unless params[:post_community_id] %>
+  <%= render 'community_post_form' %>
 <% end %>

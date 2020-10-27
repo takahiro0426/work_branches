@@ -8,34 +8,39 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <% if user_signed_in? %>
-      <div class="container-fluid">
-        <%= render 'layouts/login_user' %>
-        <div class="row">
-          <div class="col-lg-3 bg-light" id="sticky-sidebar">
-            <% if @community %>
-              <%= render partial: 'communities/side_menu' %>
-            <% end %>
-          </div>
-          <main class="col-lg-9">
-            <div class="login_menu">
+    <div class="container-fluid">
+      <% if user_signed_in? %>
+        <main>
+          <div class="row">
+            <div class="col-lg-4 bg-light border-right">
+              <%= render 'layouts/login_user' %>
+              <div class="sticky-top">
+                <%= render 'layouts/flash' %>
+                <% if @community %>
+                  <%= render partial: 'communities/side_menu' %>
+                <% end %>
+              </div>
+            </div>
+            <div class="login_menu col-lg-8">
               <%= yield %>
             </div>
-          </main>
+             <footer class="text-center fixed-bottom col-lg-4 border-top">
+              <p>© Work-branches</p>
+            </footer>
+          </div>
+        </main>
+      <% else %>
+        <main>
+          <div class="not_login_main">
+            <%= render 'layouts/not_login_user' %>
+            <%= render 'layouts/flash' %>
+            <%= yield %>
         </div>
-      </div>
-    <% else %>
-      <%= render 'layouts/not_login_user' %>
-      <main>
-        <div class="container-fluid">
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-        <%= yield %>
-      </div>
-      </main>
-    <% end %>
-    <footer class="col-lg-3 fixed-bottom text-center bg-light">
+        </main>
+        <footer class="text-center fixed-bottom border-top">
           <p>© Work-branches</p>
-    </footer>
+        </footer>
+      <% end %>
+    </div>
   </body>
 </html>

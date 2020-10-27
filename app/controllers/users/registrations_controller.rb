@@ -21,7 +21,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render :new
     end
    end
-    # valid? => false バリデーションエラー
     # bypass_sign_inメソッドでサインイン状態に
 
 
