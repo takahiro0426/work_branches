@@ -12,7 +12,7 @@
     </div>
     <div class="row pt-3">
       <div class="col-lg-7">
-        <%= attachment_image_tag @select_post, :image, format: 'jpeg' %>
+        <%= attachment_image_tag @select_post, :image, format: 'jpeg', class:"attachment_image" %>
       </div>
       <div class="col-lg-5">
         <% @comments.each do |comment| %>
