@@ -1,7 +1,10 @@
-
-<h4 class="text-lg-center"><strong><%= @community.community_name %></strong></h4>
-<p class="text-lg-center">[community key]</p>
-<p class="text-lg-center form-control placeholder"><%= @community.community_key %></p>
+<div class="card bg-light mb-5">
+	<h4 class="text-lg-center card-header mb-3"><strong><%= @community.community_name %></strong></h4>
+	<strong class="text-lg-center">コミュニティーkey</strong>
+	<p class="text-lg-center form-control placeholder"><%= @community.community_key %></p>
+	<strong class="text-lg-center text-info">コミュニティーの説明</strong>
+	<p class="text-lg-center form-control placeholder"><%= @community.community_info %></p>
+</div>
 <% if @select_post %>
 	<h5>【<%= @select_post.title %>】</h5>
 		<div class="border-top border-bottom">
@@ -19,8 +22,15 @@
 	</div>
 	<%= link_to "コメントをやめる", community_path(@community) %>
 <% else %>
-	<div class="text-justify"><%= @community.community_info %></div>
-	<% @members.each do |member| %>
-		<%= member.name %>
-	<% end %>
+	<div class="dropdown">
+		<button type="button" class="btn btn-light btn-lg btn-outline-success btn-block dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown">
+    参加者一覧
+  	</button>
+	  <div class="dropdown-menu btn-block" aria-labelledby="dropdownMenuButton">
+	  	<% @members.each do |member| %>
+	    <p class="dropdown-item mb-0"><%= member.name %></p>
+	    <div class="dropdown-divider"></div>
+			<% end %>
+		</div>
+	</div>
 <% end %>

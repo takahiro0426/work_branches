@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 		:registrations => 'users/registrations',
 		:sessions => 'users/sessions'
 	}
-
 	resources :user_communities
 	resources :communities
 	resources :community_posts

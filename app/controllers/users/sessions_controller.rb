@@ -24,7 +24,7 @@ class Users::SessionsController < Devise::SessionsController
     if @started_session = current_user.user_communities.order(:updated_at).last
       community_path(@started_session.community_id)
     else
-      rederect_to new_user_community_path, warning: "おかえりなさい【#{current_user.name}】さん!"
+      new_user_community_path
     end
   end
   # If you have extra params to permit, append them to the sanitizer.

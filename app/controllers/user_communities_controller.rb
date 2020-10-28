@@ -24,6 +24,10 @@ class UserCommunitiesController < ApplicationController
 			@repuest_community = UserCommunity.new
 			flash.now[:danger] = "keyを入力して下さい"
 			render :new
+		elsif request_community.blank?
+			@repuest_community = UserCommunity.new
+			flash.now[:danger] = "無効なkeyです"
+			render :new
 		else
 			user_community = UserCommunity.new
 			user_community.user_id = current_user.id

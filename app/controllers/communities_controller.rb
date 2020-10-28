@@ -6,7 +6,7 @@ class CommunitiesController < ApplicationController
 	def show
 		@community = Community.find(params[:id])
 		@subscribed_user = @community.user_communities.includes(:user)
-		@members = User.where(id: @subscribed_user.pluck(:user_id))
+		@members = User.where(id: @subscribed_user.pluck(:user_id)).page(params[:page]).per(10)
 		@posts = @community.community_posts.order(created_at: :desc).page(params[:page]).per(100)
 		@new_post = CommunityPost.new
 		if params[:post_community_id]

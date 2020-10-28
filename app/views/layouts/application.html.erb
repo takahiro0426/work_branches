@@ -4,7 +4,7 @@
     <title>WorkTable</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
@@ -13,7 +13,7 @@
         <main>
           <div class="row">
             <div class="col-lg-4 bg-light border-right">
-              <%= render 'layouts/login_user' %>
+              <%= render 'layouts/login_user_header' %>
               <div class="sticky-top">
                 <%= render 'layouts/flash' %>
                 <% if @community %>
@@ -24,7 +24,7 @@
             <div class="login_menu col-lg-8">
               <%= yield %>
             </div>
-             <footer class="text-center fixed-bottom col-lg-4 border-top">
+            <footer class="text-center fixed-bottom col-lg-4 border-top">
               <p>© Work-branches</p>
             </footer>
           </div>
@@ -32,8 +32,7 @@
       <% else %>
         <main>
           <div class="not_login_main">
-            <%= render 'layouts/not_login_user' %>
-            <%= render 'layouts/flash' %>
+            <%= render 'layouts/not_login_user_header' %>
             <%= yield %>
         </div>
         </main>

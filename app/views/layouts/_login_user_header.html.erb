@@ -1,11 +1,11 @@
 <header>
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light border-bottom">
-    <%= link_to "Work-branches", user_communities_path, class: "navbar-brand col-lg-4 mr-0 text-center" %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <%= link_to "Work-branches", user_communities_path, class: "navbar-brand col-sm-4 mr-0 text-center" %>
+    <button class="col-sm-1 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse col-lg-8 pl-0" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse col-sm-8 pl-0" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <%= link_to edit_user_registration_path do %>
@@ -19,12 +19,12 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <%= link_to "作る", new_community_path, class: "btn btn-outline-success mr-lg-2" %><span class="sr-only">(current)</span>
+          <%= link_to "作る", new_community_path, class: "btn btn-outline-success mr-sm-2" %><span class="sr-only">(current)</span>
         </li>
          <li class="nav-item">
-          <%= link_to "参加する", new_user_community_path, class: "btn btn-outline-success mr-lg-2" %><span class="sr-only">(current)</span>
+          <%= link_to "参加する", new_user_community_path, class: "btn btn-outline-success mr-sm-2" %><span class="sr-only">(current)</span>
         </li>
-        <li class="nav-item dropdown mr-lg-2">
+        <li class="nav-item dropdown mr-sm-2">
           <a class="nav-link dropdown-toggle text-dark" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             参加中
           </a>
@@ -34,13 +34,15 @@
             <%= link_to user_community.community_name, user_community_path(user_community), :method => :patch, class: "dropdown-item d-block text-truncate" %>
             <% end %>
             <div class="dropdown-divider"></div>
-            <strong><%= link_to "すべて表示（全#{@user_communities.count}件）", user_communities_path, class: "dropdown-item" %></strong>
+            <strong>
+              <%= link_to "すべて表示（全#{@user_communities.count}件）", user_communities_path, class: "dropdown-item" %>
+            </strong>
           </div>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-lg-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-lg-0" type="submit">Search</button>
+      <form class="form-inline my-2 my-sm-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-sm-0" type="submit">Search</button>
       </form>
     </div>
   </nav>

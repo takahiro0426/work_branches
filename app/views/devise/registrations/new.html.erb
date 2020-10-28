@@ -1,39 +1,49 @@
-<h2>Sign up</h2>
-
-<%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+<div class="log_in col-lg-8 offset-lg-2">
+  <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :グループを作る %>
-    <%= f.check_box :role, {}, "host", "member" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+    <div class="card">
+      <article class="card-body">
+        <h4 class="card-title text-center mb-4 mt-1">新規会員登録</h4>
+        <hr>
+        <p class="text-success text-center">登録内容を入力して下さい</p>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> ニックネーム　　</span>
+            </div>
+            <%= f.text_field :name, :placeholder => "ニックネームを入力して下さい", autofocus: true, autocomplete: "neme" ,class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> メールアドレス　</span>
+            </div>
+            <%= f.email_field :email, :placeholder => "メールアドレスを入力して下さい", autofocus: true, autocomplete: "email" ,class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text"> パスワードの設定 </span>
+            </div>
+            <%= f.password_field :password, :placeholder => "6ケタ以上で入力して下さい", autocomplete: "new-password", class: "form-control" %>
+            <div class="input-group-prepend">
+              <span class="input-group-text"> パスワードの確認 </span>
+            </div>
+            <%= f.password_field :password_confirmation, :placeholder => "もう一度入力して下さい", autocomplete: "new-password", class: "form-control" %>
+          </div>
+        </div>
+        <hr>
+        <div class="field">
+          <%= f.label :グループを作る %>
+          <%= f.check_box :role, {}, "host", "member" %>
+        </div>
+        <hr>
+        <div class="form-group">
+          <%= f.submit "会員登録！", class: "btn btn-success btn-block" %>
+        </div>
+      </article>
+    </div>
+  <% end %>
+</div>

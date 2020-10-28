@@ -1,0 +1,26 @@
+<header>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light border-bottom">
+    <%= link_to "Work-branches", root_path, class: "navbar-brand col-sm-6 mr-0 text-center" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse pl-0" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto  col-sm-2 offset-sm-2">
+        <li class="nav-item">
+          <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary mr-2" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "新規会員登録", new_registration_path(resource_name), class: "btn btn-success mr-2" %>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to "作る", new_community_path, class: "btn btn-outline-success mr-2" %>
+        </li>
+         <li class="nav-item">
+          <%= link_to "参加する", new_user_community_path, class: "btn btn-outline-success mr-2" %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
