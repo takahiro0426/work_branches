@@ -11,13 +11,25 @@ class CommunitiesController < ApplicationController
 		@new_post = CommunityPost.new
 		if params[:post_community_id]
 			@select_post = CommunityPost.find(params[:post_community_id])
-			@comments = @select_post.post_comments
+			@comments = @select_post.post_comments.limit(8).order(created_at: :desc)
 			@new_comment = PostComment.new
 		end
 	end
 
 	def new
-		@key = rand(100000..999999).to_s
+		@new_key = rand(100000..999999).to_s
+		if Community.where(community_key: @new_key).exists?
+			renew_key = @new_key
+			while @new_key == renew_key do
+		    	renew_key =rand(100000..999999).to_s
+			end
+			@new_key = renew_key
+		end
+		# 以下メンター
+		# community = Community.where(community_key: @new_key)
+		# if community.size > 0
+		# 	@new_key = community[0].unique_key(@new_key)
+		# end
 		@new_community = Community.new
 	end
 
@@ -25,12 +37,12 @@ class CommunitiesController < ApplicationController
 		if params[:community]
 			community = Community.new(community_params)
 			if params[:community][:community_name].blank?
-				@key = rand(100000..999999).to_s
+				@new_key = params[:community][:community_key]
 				@new_community = Community.new
 				flash.now[:danger] = "”コミュニティーの名前”を記入して下さい"
 				render :new
 			elsif community.invalid?
-				@key = rand(100000..999999).to_s
+				@new_key = params[:community][:community_key]
 				@new_community = Community.new
 				flash.now[:danger] = "文字数がオーバーしています"
 				render :new
@@ -79,5 +91,4 @@ class CommunitiesController < ApplicationController
 	def post_comment_params
 		params.require(:post_comment).permit(:comment, :community_post_id, :user_id).merge(user_id: current_user.id)
 	end
-
 end

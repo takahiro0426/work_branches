@@ -14,12 +14,24 @@
       <div class="col-lg-7">
         <%= attachment_image_tag @select_post, :image, format: 'jpeg', class:"attachment_image" %>
       </div>
-      <div class="col-lg-5">
-        <% @comments.each do |comment| %>
-          <%= comment.comment %>
-        <% end %>
-      </div>
-      <p class="col-lg-12"><%= @select_post.caption %></p>
+      <table class="table table-sm col-lg-5">
+        <thead class="thead-light">
+          <tr>
+            <th>コメント</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <% @comments.each do |comment| %>
+            <td><%= comment.user.name %></td>
+            <td class="table_comment"><%= comment.comment %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
+    <p class="col-lg-7"><%= @select_post.caption %></p>
   </div>
 </div>
+

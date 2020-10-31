@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2020_10_23_134805) do
     t.text "community_info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["community_key"], name: "index_communities_on_community_key", unique: true
   end
 
   create_table "community_posts", force: :cascade do |t|

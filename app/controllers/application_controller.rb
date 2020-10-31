@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
 	def user_communities_index
 		@community_in_entries = UserCommunity.where(user_id: current_user.id)
-		@user_communities = Community.where(id: @community_in_entries.pluck(:community_id))
+		@user_communities = Community.where(id: @community_in_entries.pluck(:community_id)).order(updated_at: :asc)
 	end
 
 end

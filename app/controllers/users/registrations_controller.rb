@@ -17,7 +17,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       bypass_sign_in(@user)
       redirect_to new_community_path
     else
-      flash.now[:alert] = @user.errors.full_messages
       render :new
     end
    end

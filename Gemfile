@@ -69,6 +69,7 @@ gem 'pry-rails'
 
 gem 'devise'
 gem 'cancancan'
+gem 'rails-i18n'
 
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
