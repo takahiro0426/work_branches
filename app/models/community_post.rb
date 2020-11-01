@@ -5,7 +5,7 @@ class CommunityPost < ApplicationRecord
 	attachment :image
 	validates :title, presence: true, length: { maximum: 20 }
 	validates :caption, length: { maximum: 200 }
-
+	# communities#showの検索機能
 	def self.search(search)
         if search
           where([' title LIKE ?', "%#{search}%"])

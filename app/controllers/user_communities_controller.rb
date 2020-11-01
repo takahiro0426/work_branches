@@ -29,11 +29,7 @@ class UserCommunitiesController < ApplicationController
 			flash.now[:danger] = "無効なkeyです"
 			render :new
 		else
-			user_community = UserCommunity.new
-			user_community.user_id = current_user.id
-			user_community.community_id = request_community.id
-			user_community.is_role = 3
-			user_community.save
+			UserCommunity.create(user_id: current_user.id, community_id: request_community.id, is_role: 3)
 			redirect_to user_communities_path, success: "【#{request_community.community_name}】に参加しました！"
 		end
 	end

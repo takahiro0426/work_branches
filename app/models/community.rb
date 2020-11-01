@@ -5,4 +5,6 @@ class Community < ApplicationRecord
 	validates :community_name, presence: true, length: { maximum: 20 }
     validates :community_key, uniqueness: true
     validates :community_info, length: { maximum: 400 }
+
+
 end

@@ -6,8 +6,8 @@ class CommunitiesController < ApplicationController
 	def show
 		@community = Community.find(params[:id])
 		@subscribed_user = @community.user_communities.includes(:user)
-		@members = User.where(id: @subscribed_user.pluck(:user_id)).page(params[:page]).per(10)
-		@posts = @community.community_posts.order(created_at: :desc).page(params[:page]).per(100)
+		@members = User.where(id: @subscribed_user.pluck(:user_id))
+		@posts = @community.community_posts.order(created_at: :desc).page(params[:page]).per(100).search(params[:search])
 		@new_post = CommunityPost.new
 		if params[:post_community_id]
 			@select_post = CommunityPost.find(params[:post_community_id])
@@ -43,11 +43,7 @@ class CommunitiesController < ApplicationController
 				render :new
 			else community.save
 				# コミュニティ-を作ると同時に参加
-				user_community = UserCommunity.new
-				user_community.user_id = current_user.id
-				user_community.community_id = community.id
-				user_community.is_role = 3
-				user_community.save
+				UserCommunity.create(user_id: current_user.id, community_id: community.id, is_role: 3)
 				redirect_to community_path(community), success: "【#{community.community_name}】を作成しました！"
 			end
 		elsif params[:community_post]
@@ -58,7 +54,7 @@ class CommunitiesController < ApplicationController
 				@community = Community.find(params[:community_post][:community_id])
 				@subscribed_user = @community.user_communities.includes(:user)
 				@members = User.where(id: @subscribed_user.pluck(:user_id))
-				@posts = @community.community_posts.order(created_at: :desc).page(params[:page]).per(100)
+				@posts = @community.community_posts.order(created_at: :desc).page(params[:page]).per(100).search(params[:search])
 				@new_post = CommunityPost.new
 				flash.now[:danger] = "タイトルを入力してください"
 				render :show
