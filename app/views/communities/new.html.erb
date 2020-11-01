@@ -2,17 +2,17 @@
   <%= form_with model: @new_community, url: communities_path, local: true do |f| %>
     <div class="card">
       <article class="card-body">
-        <h4 class="card-title text-center mb-4 mt-1"> コミュニティーを作る </h4>
+        <h4 class="card-title text-center mb-4 mt-1"> コミュニティを作る </h4>
         <hr>
         <div class="form-group">
           <p class="text-lg-center form-control bk-white"><%= @new_key %></p>
           <%= f.hidden_field :community_key, value: @new_key %>
         </div>
-        <p class="text-success text-center">コミュニティーの名前と説明を入力して下さい</p>
+        <p class="text-success text-center">コミュニティの名前と説明を入力して下さい</p>
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text"> コミュニティーの名前 </span>
+              <span class="input-group-text"> コミュニティの名前 </span>
             </div>
             <%= f.text_field :community_name, :placeholder => "※20文字以内", autofocus: true, class: "form-control" %>
           </div>
@@ -20,13 +20,13 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text"> コミュニティーの説明 </span>
+              <span class="input-group-text"> コミュニティの説明 </span>
             </div>
               <%= f.text_area :community_info, :placeholder => "※400文字以内", autofocus: true, class: "form-control" %>
           </div>
         </div>
         <div class="form-group">
-          <%= f.submit "コミュニティーを作る", class: "btn btn-success btn-block" %>
+          <%= f.submit "コミュニティを作る", class: "btn btn-success btn-block" %>
         </div>
       </article>
     </div>

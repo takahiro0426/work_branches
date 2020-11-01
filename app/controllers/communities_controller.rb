@@ -39,7 +39,7 @@ class CommunitiesController < ApplicationController
 			if params[:community][:community_name].blank?
 				@new_key = params[:community][:community_key]
 				@new_community = Community.new
-				flash.now[:danger] = "”コミュニティーの名前”を記入して下さい"
+				flash.now[:danger] = "”コミュニティの名前”を記入して下さい"
 				render :new
 			elsif community.invalid?
 				@new_key = params[:community][:community_key]

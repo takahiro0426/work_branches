@@ -18,7 +18,7 @@ class UserCommunitiesController < ApplicationController
 		request_community = Community.find_by(community_key: params[:community_key])
 		if @user_communities.include?(request_community)
 			@repuest_community = UserCommunity.new
-			flash.now[:danger] = "参加済みのコミュニティーです"
+			flash.now[:danger] = "参加済みのコミュニティです"
 			render :new
 		elsif params[:community_key].blank?
 			@repuest_community = UserCommunity.new

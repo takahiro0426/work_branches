@@ -1,16 +1,18 @@
 <div class="card bg-light mb-5">
 	<h4 class="text-lg-center card-header mb-3"><strong><%= @community.community_name %></strong></h4>
-	<strong class="text-lg-center">コミュニティーkey</strong>
+	<strong class="text-lg-center">コミュニティkey</strong>
 	<p class="text-lg-center form-control placeholder"><%= @community.community_key %></p>
 	<hr>
-	<strong class="text-lg-center text-info">コミュニティーの説明</strong>
+	<strong class="text-lg-center text-info">コミュニティの説明</strong>
 	<div class="card-body"><%= @community.community_info %></div>
 </div>
+<!-- コメント入力画面 -->
 <% if @select_post %>
 	<h5>【<%= @select_post.title %>】</h5>
 		<div class="border-top border-bottom">
 	    <p><%= @select_post.user.name %>
-	    <small class="text-muted"><%= @select_post.created_at.strftime('%Y/%m/%d %H:%M') %></small></p>
+	    	<small class="text-muted"><%= @select_post.created_at.strftime('%Y/%m/%d %H:%M') %></small>
+	  	</p>
 		</div>
 	<div class="bg-white border rounded-left border-success">
     <%= form_with model: @new_comment, url: communities_path, local: true do |f| %>

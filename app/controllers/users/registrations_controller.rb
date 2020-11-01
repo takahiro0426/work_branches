@@ -14,8 +14,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(sign_up_params)
     if @user.valid?
       @user.save
+      # ログイン状態を維持bypass_sign_in
       bypass_sign_in(@user)
-      redirect_to new_community_path
+      redirect_to new_community_path, warning: "ようこそ #{@user.name} さん！<br>Work-branchesへ!"
     else
       render :new
     end

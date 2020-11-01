@@ -5,12 +5,4 @@ class Community < ApplicationRecord
 	validates :community_name, presence: true, length: { maximum: 20 }
     validates :community_key, uniqueness: true
     validates :community_info, length: { maximum: 400 }
-    # 以下メンター
-    # def unique_key(new_key)
-    #     renew_key = new_key
-    #     while new_key == renew_key do
-    #         renew_key = rand(100000..999999).to_s
-    #     end
-    #     return renew_key
-    # end
 end
