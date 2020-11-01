@@ -36,7 +36,7 @@
           </thead>
           <tbody>
             <tr>
-              <% post.post_comments.each do |post_comment| %>
+              <% post.post_comments.limit(8).order(created_at: :desc).each do |post_comment| %>
               <td><%= post_comment.user.name %></td>
               <td class="table_comment"><%= post_comment.comment %></td>
             </tr>
