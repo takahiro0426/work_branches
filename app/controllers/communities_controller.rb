@@ -25,11 +25,6 @@ class CommunitiesController < ApplicationController
 			end
 			@new_key = renew_key
 		end
-		# 以下メンター
-		# community = Community.where(community_key: @new_key)
-		# if community.size > 0
-		# 	@new_key = community[0].unique_key(@new_key)
-		# end
 		@new_community = Community.new
 	end
 
