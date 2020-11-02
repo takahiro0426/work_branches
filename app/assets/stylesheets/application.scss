@@ -57,6 +57,49 @@ html {
 }
 
 
+@media screen and (max-width:425px) {
+
+	.sticky-top {
+  		padding-top: 100px;
+  		height: 0;
+
+  	}
+
+	.post_form {
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		z-index: 2;
+	}
+
+	.login_menu {
+		margin-top: 0px;
+		position: relative;
+		margin-bottom: 260px;
+		width: 100%;
+}
+
+	.community_info {
+		position: absolute;
+		left: -250px;
+		height: 100%;
+		width: 100%;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
