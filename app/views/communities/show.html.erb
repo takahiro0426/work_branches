@@ -36,8 +36,9 @@
           </thead>
           <tbody>
             <tr>
+              <!-- PostごとのPostCommentを新しい順に8件取得 -->
               <% post.post_comments.limit(8).order(created_at: :desc).each do |post_comment| %>
-              <td><%= post_comment.user.name %></td>
+              <td class="border-right"><%= post_comment.user.name %></td>
               <td class="table_comment"><%= post_comment.comment %></td>
             </tr>
             <% end %>
@@ -45,6 +46,7 @@
         </table>
       </div>
       </div>
+      <p><%= post.image_tags.pluck(:tag)[0] %></p>
       <p class="col-lg-7"><%= post.caption %></p>
     <% end %>
   </div>

@@ -39,7 +39,7 @@ class CommunitiesController < ApplicationController
 			elsif community.invalid?
 				@new_key = params[:community][:community_key]
 				@new_community = Community.new
-				flash.now[:danger] = "文字数がオーバーしています"
+				flash.now[:danger] = "”文字数”がオーバーしています"
 				render :new
 			else community.save
 				# コミュニティ-を作ると同時に参加
@@ -49,6 +49,10 @@ class CommunitiesController < ApplicationController
 		elsif params[:community_post]
 			post = CommunityPost.new(community_post_params)
 			if post.save
+				image_tags = Vision.get_image_data(post.image)
+				image_tags.each do |tag|
+					post.image_tags.create(tag: tag)
+				end
 				redirect_to community_path(post.community_id), success: "投稿しました！"
 			else
 				@community = Community.find(params[:community_post][:community_id])
@@ -56,7 +60,7 @@ class CommunitiesController < ApplicationController
 				@members = User.where(id: @subscribed_user.pluck(:user_id))
 				@posts = @community.community_posts.order(created_at: :desc).page(params[:page]).per(100).search(params[:search])
 				@new_post = CommunityPost.new
-				flash.now[:danger] = "タイトルを入力してください"
+				flash.now[:danger] = "”タイトル”を入力してください"
 				render :show
 			end
 		else

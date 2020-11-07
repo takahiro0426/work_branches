@@ -32,12 +32,9 @@
     参加者一覧
   	</button>
 	  <div class="dropdown-menu btn-block" aria-labelledby="dropdownMenuButton">
-	  	<% @members.each do |member| %>
-	    <p class="dropdown-item mb-0 border-bottom"><%= member.name %></p>
+		<% @members.each do |member| %>
+		<p class="dropdown-item mb-0 border-bottom"><%= member.name %></p>
 			<% end %>
-				<!-- <div class="col-lg-4 offset-lg-4">
-	 	 		<%#= paginate @members %>
-			</div> -->
 		</div>
 	</div>
 <% end %>

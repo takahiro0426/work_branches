@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_23_134805) do
+ActiveRecord::Schema.define(version: 2020_11_02_122602) do
 
   create_table "communities", force: :cascade do |t|
     t.string "community_key", null: false
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 2020_10_23_134805) do
     t.datetime "updated_at", null: false
     t.index ["community_id"], name: "index_community_posts_on_community_id"
     t.index ["user_id"], name: "index_community_posts_on_user_id"
+  end
+
+  create_table "image_tags", force: :cascade do |t|
+    t.integer "community_post_id"
+    t.string "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_post_id"], name: "index_image_tags_on_community_post_id"
   end
 
   create_table "post_comments", force: :cascade do |t|
