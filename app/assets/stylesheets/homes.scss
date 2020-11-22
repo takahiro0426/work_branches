@@ -1,3 +1,127 @@
 // Place all the styles related to the Homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+about {
+	width: 80%;
+	margin: 0 auto;
+	padding-top: 57px;
+	border: 1px solid #dee2e6 !important;
+	background-color: #f8f9fa !important;
+	display: grid;
+	grid-template:
+		"... ..... ..... ..... ..." 10px
+		"...  top   top   top  ..." auto
+		"... ..... ..... ..... ..." 50px
+		"... left  ..... right ..." auto
+		"... ..... ..... ..... ..." 50px
+		/50px auto 50px auto 50px;
+}
+
+top_slider {
+	grid-area: top;
+	margin: 0 auto;
+}
+
+.top_line{
+	font-size: 50px;
+	text-decoration: underline 5px;
+	text-decoration-color: #CCFFCC;
+}
+
+.carousel-inner {
+	border: groove 10px;
+}
+
+.carousel-item {
+	padding: 0 60px;
+}
+
+entry {
+	grid-area: left;
+}
+
+.description_title {
+	text-decoration: underline 5px;
+	text-decoration-color: #CCFFCC;
+}
+
+.description_item {
+	border: groove 3px;
+}
+
+.number {
+	border: 1px solid #dee2e6 !important;
+	margin: 0;
+}
+
+make {
+	grid-area: right;
+}
+
+.carousel-control-prev.prev {
+    background-color: #a7a7a7;
+    width: 60px;
+}
+
+.carousel-control-next.next{
+    background-color: #a7a7a7;
+    width: 60px;
+}
+
+mobile {
+	visibility: hidden;
+}
+
+@media screen and (max-width:425px) {
+	about {
+		width: 100%;
+		grid-template:
+		"......" 10px
+		"top   "
+		"......" 10px
+		"mobile"
+		"......" 10px
+		"right "
+		"......" 50px
+		"left  "
+		"......" 50px
+		;
+	}
+
+	top_slider {
+		grid-area: top;
+		width: 100%;
+	}
+
+	mobile {
+		grid-area: mobile;
+		visibility: visible;
+		margin: 0 auto;
+	}
+
+	.carousel-control-prev.prev {
+	    background-color: #a7a7a7;
+	    width: 30px;
+	}
+
+	.carousel-control-next.next{
+	   	background-color: #a7a7a7;
+	   	width: 30px;
+	}
+	.carousel-item {
+		padding: 0 15px;
+	}
+
+	.top_line {
+		font-size: 25px;
+	}
+
+	.description_title {
+		font-size: 20px;
+	}
+
+	.number {
+		font-size: 15px;
+	}
+}

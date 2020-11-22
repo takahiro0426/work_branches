@@ -18,7 +18,7 @@
 		</div>
 	<div class="bg-white border rounded-left border-success">
     <%= form_with model: @new_comment, url: communities_path, local: true do |f| %>
-      <%= f.text_field :comment, :placeholder => "※18文字以内", autofocus: true, class: "form-control" %>
+      <%= f.text_field :comment, :placeholder => "※30文字以内", autofocus: true, class: "form-control" %>
       <%= f.submit "コメント",class: "btn btn-outline-success btn-block" %>
       <%= f.hidden_field :community_post_id, value: @select_post.id %>
       <%= f.hidden_field :community_id, value: @community.id %>

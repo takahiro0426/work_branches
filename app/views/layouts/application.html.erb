@@ -32,12 +32,12 @@
         </main>
       <% else %>
         <main>
+          <%= render 'layouts/not_login_user_header' %>
           <div class="not_login_main">
-            <%= render 'layouts/not_login_user_header' %>
             <%= yield %>
-        </div>
+          </div>
         </main>
-        <footer class="text-center fixed-bottom border-top">
+        <footer class="text-center fixed-bottom border-top bg-light">
           <p>© Work-branches</p>
         </footer>
       <% end %>

@@ -1,2 +1,59 @@
-homes#about
-<p>\\about page 作成中//</p>
+<about>
+	<top_slider>
+	<h1 class="top_line">お手軽コミュニティサービス</h1>
+		<div id="carouselOption1" class="carousel slide" data-ride="carousel">
+		  <!-- インジケータの設定 -->
+		  <ol class="carousel-indicators">
+		    <li data-target="#carouselOption1" data-slide-to="0" class="active"></li>
+		    <li data-target="#carouselOption1" data-slide-to="1"></li>
+		    <li data-target="#carouselOption1" data-slide-to="2"></li>
+		  </ol>
+		  <!-- スライドさせる画像の設定 -->
+		  <div class="carousel-inner">
+		    <div class="carousel-item active">
+		     	<%= image_tag'writing.png',class: "d-block w-100" %>
+		    </div>
+		    <div class="carousel-item">
+		     	<%= image_tag'jouhou.png',class: "d-block w-100" %>
+		    </div>
+		    <div class="carousel-item">
+		      <%= image_tag'change.png',class: "d-block w-100" %>
+		    </div>
+		    <div class="carousel-item">
+		      <%= image_tag'key.png',class: "d-block w-100" %>
+		    </div>
+		  </div>
+		  <!-- スライドコントロールの設定 -->
+		  <a class="carousel-control-prev prev" href="#carouselOption1" data-slide="prev">
+		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		  </a>
+		  <a class="carousel-control-next next" href="#carouselOption1" data-slide="next">
+		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+		  </a>
+		</div>
+	</top_slider>
+	<mobile>
+    <%= link_to "　ログイン　", new_user_session_path, class: "btn btn-primary mr-2" %>
+    <%= link_to "新規会員登録", new_registration_path(resource_name), class: "btn btn-success mr-2" %>
+	</mobile>
+	<entry>
+		<h2 class="description_title">コミュニティに参加する</h2>
+		<div class="description_item">
+			<%= image_tag'key2.png', class: "d-block w-100" %>
+			<h3 class="number">①keyを入力してボタンをクリックするだけ！</h3>
+			<%= image_tag'key2_end.png', class: "d-block w-100" %>
+			<h3 class="number">②参加中のコミュニティに追加されます</h3>
+			<%= image_tag'key2_comment.png', class: "d-block w-100" %>
+			<h3 class="number">③コミュニティ機能を利用しよう！</h3>
+		</div>
+	</entry>
+	<make>
+		<h2 class="description_title">コミュニティを作る</h2>
+		<div class="description_item">
+			<%= image_tag'community.png', class: "d-block w-100" %>
+			<h3 class="number">①コミュニティの名前を決めよう！</h3>
+			<%= image_tag'community_end.png', class: "d-block w-100" %>
+			<h3 class="number">②keyを教えて参加者を増やそう！</h3>
+		</div>
+	</make>
+</div>

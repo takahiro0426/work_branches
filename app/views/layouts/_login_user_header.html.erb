@@ -1,12 +1,12 @@
 <header>
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light border-bottom">
-    <%= link_to "Work-branches", user_communities_path, class: "navbar-brand col-sm-4 mr-0 text-center" %>
-    <button class="col-sm-1 navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <%= link_to "Work-branches", user_communities_path, class: "navbar-brand text-center offset-sm-1" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse col-sm-8 pl-0" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse pl-0" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto col-sm-3 offset-sm-2">
         <li class="nav-item">
           <%= link_to edit_user_registration_path do %>
           <strong class="btn btn-outline-info"><%= current_user.name %><small> でログイン中</small></strong>
