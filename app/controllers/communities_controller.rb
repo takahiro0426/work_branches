@@ -48,13 +48,7 @@ class CommunitiesController < ApplicationController
 			end
 		elsif params[:community_post]
 			post = CommunityPost.new(community_post_params)
-			if post.save
-				image_tags = Vision.get_image_data(post.image)
-				image_tags.each do |tag|
-					post.image_tags.create(tag: tag)
-				end
-				redirect_to community_path(post.community_id), success: "投稿しました！"
-			else
+			if post.invalid?
 				@community = Community.find(params[:community_post][:community_id])
 				@subscribed_user = @community.user_communities.includes(:user)
 				@members = User.where(id: @subscribed_user.pluck(:user_id))
@@ -62,6 +56,15 @@ class CommunitiesController < ApplicationController
 				@new_post = CommunityPost.new
 				flash.now[:danger] = "”タイトル”を入力してください"
 				render :show
+			else
+				post.save
+				if post.image
+					image_tags = Vision.get_image_data(post.image)
+					image_tags.each do |tag|
+						post.image_tags.create(tag: tag)
+					end
+				end
+				redirect_to community_path(post.community_id), success: "投稿しました！"
 			end
 		else
 			comment = PostComment.create(post_comment_params)
