@@ -23,7 +23,7 @@
             参加中
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <% @user_communities.first(5).each do |user_community| %>
+            <% @user_communities.each do |user_community| %>
             <!-- コミュニティの切り替えを管理するため、#pudateへ飛ばしています -->
             <%= link_to user_community.community_name, user_community_path(user_community), :method => :patch, class: "dropdown-item d-block text-truncate" %>
             <% end %>

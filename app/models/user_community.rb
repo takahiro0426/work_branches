@@ -2,19 +2,14 @@ class UserCommunity < ApplicationRecord
 	belongs_to :user
 	belongs_to :community
 
-	# def errors
-	# 	if @user_communities.include?(request_community)
-	# 		@repuest_community = UserCommunity.new
-	# 		flash.now[:danger] = "参加済みのコミュニティです"
-	# 		render :new
-	# 	elsif params[:community_key].blank?
-	# 		@repuest_community = UserCommunity.new
-	# 		flash.now[:danger] = "keyを入力して下さい"
-	# 		render :new
-	# 	elsif request_community.blank?
-	# 		@repuest_community = UserCommunity.new
-	# 		flash.now[:danger] = "無効なkeyです"
-	# 		render :new
-	# 	end
-	# end
+	def self.error_massege(request, request_key, user_communities)
+		if request_key.blank?
+			error_massage = "keyを入力して下さい"
+		elsif request.nil?
+			error_massage = "無効なkeyです"
+		elsif user_communities.include?(request)
+			error_massage = "参加済みのコミュニティです"
+		end
+	end
+
 end

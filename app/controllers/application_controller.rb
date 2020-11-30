@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 	# nav-itemの参加中で使用する
 	def user_communities_index
 		@community_in_entries = UserCommunity.where(user_id: current_user.id)
-		@user_communities = Community.where(id: @community_in_entries.pluck(:community_id)).order(updated_at: :asc)
+		@user_communities = Community.where(id: @community_in_entries.pluck(:community_id)).order(updated_at: :desc).first(5)
 	end
 
 end

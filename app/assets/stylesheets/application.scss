@@ -66,7 +66,7 @@ html {
 @media screen and (max-width:425px) {
 
 	.sticky-top {
-  		padding-top: 100px;
+  		padding-top: 60px;
   		height: 0;
 
   	}
@@ -92,6 +92,13 @@ html {
 		width: 100%;
 	}
 
+	.post_form {
+		font-size: 10px;
+	}
+
+	.post_search {
+		padding-top: 60px;
+	}
 }
 
 

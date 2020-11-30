@@ -3,30 +3,15 @@ class UserCommunitiesController < ApplicationController
 	def index
 	end
 
-	def show
-
-	end
-
-	def edit
-	end
-
 	def new
 		@repuest_community = UserCommunity.new
 	end
 
 	def create
 		request_community = Community.find_by(community_key: params[:community_key])
-		if @user_communities.include?(request_community)
+		if error_massage = UserCommunity.error_massege(request_community, params[:community_key], @user_communities)
 			@repuest_community = UserCommunity.new
-			flash.now[:danger] = "参加済みのコミュニティです"
-			render :new
-		elsif params[:community_key].blank?
-			@repuest_community = UserCommunity.new
-			flash.now[:danger] = "keyを入力して下さい"
-			render :new
-		elsif request_community.blank?
-			@repuest_community = UserCommunity.new
-			flash.now[:danger] = "無効なkeyです"
+			flash.now[:danger] = error_massage
 			render :new
 		else
 			UserCommunity.create(user_id: current_user.id, community_id: request_community.id, is_role: 3)
@@ -41,10 +26,4 @@ class UserCommunitiesController < ApplicationController
 		redirect_to community_path(params[:id])
 	end
 
-
-
-	private
-	# def user_community_params
-	# 	params.require(:user_community).permit(:community_id, :is_activ, :id_role).merge(user_id: current_user.id)
-	# end
 end

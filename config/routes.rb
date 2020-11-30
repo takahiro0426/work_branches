@@ -6,9 +6,10 @@ Rails.application.routes.draw do
 		:registrations => 'users/registrations',
 		:sessions => 'users/sessions'
 	}
-	resources :user_communities
+	resources :user_communities, only: [:new, :create, :update, :index]
 	resources :communities
-	resources :community_posts
+	resources :community_posts, only: [:edet, :update, :show, :delete]
+  resources :post_comment, only: [:edet, :update, :show, :delete]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
