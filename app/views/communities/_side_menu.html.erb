@@ -1,40 +1,40 @@
 <div class="community_info">
-	<div class="card bg-light mb-5">
-		<h4 class="text-lg-center card-header mb-3"><strong><%= @community.community_name %></strong></h4>
-		<strong class="text-lg-center">コミュニティkey</strong>
-		<p class="text-lg-center form-control placeholder"><%= @community.community_key %></p>
-		<hr>
-		<strong class="text-lg-center text-info">コミュニティの説明</strong>
-		<div class="card-body"><%= @community.community_info %></div>
-	</div>
+  <div class="card bg-light mb-5">
+    <h4 class="text-lg-center card-header mb-3"><strong><%= @community.community_name %></strong></h4>
+    <strong class="text-lg-center">コミュニティkey</strong>
+    <p class="text-lg-center form-control placeholder"><%= @community.community_key %></p>
+    <hr>
+    <strong class="text-lg-center text-info">コミュニティの説明</strong>
+    <div class="card-body"><%= @community.community_info %></div>
+  </div>
 </div>
 <!-- コメント入力画面 -->
 <% if @select_post %>
-	<h5>【<%= @select_post.title %>】</h5>
-		<div class="border-top border-bottom">
-	    <p><%= @select_post.user.name %>
-	    	<small class="text-muted"><%= @select_post.created_at.strftime('%Y/%m/%d %H:%M') %></small>
-	  	</p>
-		</div>
-	<div class="bg-white border rounded-left border-success">
+  <h5>【<%= @select_post.title %>】</h5>
+    <div class="border-top border-bottom">
+      <p><%= @select_post.user.name %>
+        <small class="text-muted"><%= @select_post.created_at.strftime('%Y/%m/%d %H:%M') %></small>
+      </p>
+    </div>
+  <div class="bg-white border rounded-left border-success">
     <%= form_with model: @new_comment, url: communities_path, local: true do |f| %>
       <%= f.text_field :comment, :placeholder => "※30文字以内", autofocus: true, class: "form-control" %>
       <%= f.submit "コメント",class: "btn btn-outline-success btn-block" %>
       <%= f.hidden_field :community_post_id, value: @select_post.id %>
       <%= f.hidden_field :community_id, value: @community.id %>
       <!-- community.idはredirect先の引数として使用する -->
- 	 	<% end %>
-	</div>
-	<%= link_to "コメントをやめる", community_path(@community), class: "btn btn-sm btn-outline-dark btn-block mt-2" %>
+    <% end %>
+  </div>
+  <%= link_to "コメントをやめる", community_path(@community), class: "btn btn-sm btn-outline-dark btn-block mt-2" %>
 <% else %>
-	<div class="dropdown">
-		<button type="button" class="btn btn-light btn-lg btn-outline-success btn-block dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown">
+  <div class="dropdown">
+    <button type="button" class="btn btn-light btn-lg btn-outline-success btn-block dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown">
     参加者一覧
-  	</button>
-	  <div class="dropdown-menu btn-block" aria-labelledby="dropdownMenuButton">
-		<% @members.each do |member| %>
-		<p class="dropdown-item mb-0 border-bottom"><%= member.name %></p>
-			<% end %>
-		</div>
-	</div>
+    </button>
+    <div class="dropdown-menu btn-block" aria-labelledby="dropdownMenuButton">
+    <% @members.each do |member| %>
+    <p class="dropdown-item mb-0 border-bottom"><%= member.name %></p>
+      <% end %>
+    </div>
+  </div>
 <% end %>

@@ -18,7 +18,7 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
-   protected
+  protected
   def after_sign_in_path_for(resource)
     # アカウント切り替え時のuser_communities#updateの処理を元に、@started_sessionを特定
     if @started_session = current_user.user_communities.order(:updated_at).last

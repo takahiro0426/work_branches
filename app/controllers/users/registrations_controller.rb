@@ -22,7 +22,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
    end
 
-
   # GET /resource/edit
   # def edit
   #   super
@@ -47,15 +46,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-   protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:role, :name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:role, :name])
    end
   # If you have extra params to permit, append them to the sanitizer.
    def configure_account_update_params
-     devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, :name])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:attribute, :name])
    end
 
   # The path used after sign up.
@@ -65,6 +64,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up for inactive accounts.
    def after_update_path_for(resource)
-     edit_user_registration_path
+    edit_user_registration_path
    end
 end
