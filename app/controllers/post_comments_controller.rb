@@ -1,8 +1,8 @@
 class PostCommentsController < ApplicationController
 
-	def show
-	end
+  def show
+  end
 
-	def edit
-	end
+  def edit
+  end
 end

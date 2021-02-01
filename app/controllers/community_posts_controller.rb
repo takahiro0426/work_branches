@@ -1,10 +1,10 @@
 class CommunityPostsController < ApplicationController
-	before_action :authenticate_user!
+  before_action :authenticate_user!
 
-	def show
-	end
+  def show
+  end
 
-	def edit
-	end
+  def edit
+  end
 
 end
