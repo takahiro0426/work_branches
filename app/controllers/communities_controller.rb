@@ -32,26 +32,6 @@ class CommunitiesController < ApplicationController
         UserCommunity.create(user_id: current_user.id, community_id: community.id, is_role: 3)
         redirect_to community_path(community), success: "【#{community.community_name}】を作成しました！"
       end
-    elsif params[:community_post]
-      post = CommunityPost.new(community_post_params)
-      if post.invalid?
-        @community = Community.find(params[:community_post][:community_id])
-        @subscribed_user = @community.user_communities.includes(:user)
-        @members = User.where(id: @subscribed_user.pluck(:user_id))
-        @posts = @community.community_posts.order(created_at: :desc).page(params[:page]).per(100).search(params[:search])
-        @new_post = CommunityPost.new(community_post_params)
-        flash.now[:danger] = CommunityPost.create_error_message(post)
-        render :show
-      else
-        post.save
-        if post.image
-          image_tags = Vision.get_image_data(post.image)
-          image_tags.each do |tag|
-            post.image_tags.create(tag: tag)
-          end
-        end
-        redirect_to community_path(post.community_id), success: "投稿しました！"
-      end
     else
       comment = PostComment.create(post_comment_params)
       if comment.invalid?
@@ -71,10 +51,6 @@ class CommunitiesController < ApplicationController
 
   def community_params
     params.require(:community).permit(:community_name, :community_key, :community_info)
-  end
-
-  def community_post_params
-    params.require(:community_post).permit(:user_id, :community_id, :image, :tag_id, :title, :caption).merge(user_id: current_user.id)
   end
 
   def post_comment_params
