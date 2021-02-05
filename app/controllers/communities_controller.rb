@@ -19,28 +19,16 @@ class CommunitiesController < ApplicationController
   end
 
   def create
-    if params[:community]
-      community = Community.new(community_params)
-      if community.invalid?
-        flash.now[:danger] = Community.create_error_message(community)
-        @new_community = Community.new(community_params)
-        @new_key = community.community_key
-        render :new
-      else
-        community.save
-        # コミュニティ-を作ると同時に参加
-        UserCommunity.create(user_id: current_user.id, community_id: community.id, is_role: 3)
-        redirect_to community_path(community), success: "【#{community.community_name}】を作成しました！"
-      end
+    community = Community.new(community_params)
+    if community.invalid?
+      flash.now[:danger] = Community.create_error_message(community)
+      @new_community = Community.new(community_params)
+      @new_key = community.community_key
+      render :new
     else
-      comment = PostComment.create(post_comment_params)
-      if comment.invalid?
-        redirect_to community_path(params[:post_comment][:community_id], post_community_id: comment.community_post_id), danger: "コメントは1〜30文字以内です"
-      else
-        comment.save
-        # 第一はcommunityの特定、第二引数は@select_postへ代入し、commentしたpost_communityを表示する処理で用います
-        redirect_to community_path(params[:post_comment][:community_id], post_community_id: comment.community_post_id)
-      end
+      community.save
+      UserCommunity.create(user_id: current_user.id, community_id: community.id, is_role: 3)
+      redirect_to community_path(community), success: "【#{community.community_name}】を作成しました！"
     end
   end
 
@@ -53,7 +41,4 @@ class CommunitiesController < ApplicationController
     params.require(:community).permit(:community_name, :community_key, :community_info)
   end
 
-  def post_comment_params
-    params.require(:post_comment).permit(:comment, :community_post_id, :user_id).merge(user_id: current_user.id)
-  end
 end
