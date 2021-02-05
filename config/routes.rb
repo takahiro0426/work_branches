@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 	resources :user_communities, only: [:new, :create, :update, :index]
 	resources :communities
 	resources :community_posts
-  resources :post_comments
+  resources :post_comment, only: [:edet, :update, :show, :delete]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
