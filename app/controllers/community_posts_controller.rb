@@ -10,12 +10,7 @@ class CommunityPostsController < ApplicationController
   def create
     post = CommunityPost.new(community_post_params)
     if post.save
-      if post.image
-        image_tags = Vision.get_image_data(post.image)
-        image_tags.each do |tag|
-          post.image_tags.create(tag: tag)
-        end
-      end
+      ImageTag.create_image_tag(post)
       redirect_to community_path(post.community_id), success: "投稿しました！"
     else
       @community = Community.find(params[:community_post][:community_id])
