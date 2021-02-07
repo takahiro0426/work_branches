@@ -19,14 +19,6 @@ html {
     height: 100%;
 }
 
-.field_with_errors  {
-    display: flex;
-    flex: auto;
-    input {
-        @extend .is-invalid;
-    }
-}
-
 .navbar-brand {
     font-family: serif;
 }
