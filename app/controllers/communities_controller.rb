@@ -20,15 +20,14 @@ class CommunitiesController < ApplicationController
 
   def create
     community = Community.new(community_params)
-    if community.invalid?
-      flash.now[:danger] = Community.create_error_message(community)
-      @new_community = Community.new(community_params)
-      @new_key = community.community_key
-      render :new
-    else
-      community.save
+    if community.save
       UserCommunity.create(user_id: current_user.id, community_id: community.id, is_role: 3)
       redirect_to community_path(community), success: "【#{community.community_name}】を作成しました！"
+    else
+      flash.now[:danger] = Community.create_error_message(community)
+      @new_community = community
+      @new_key = Community.create_new_community_key
+      render :new
     end
   end
 
