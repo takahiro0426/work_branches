@@ -3,7 +3,7 @@
     <h4 class="card-title text-center mb-4 mt-1">参加中のコミュニティ</h4>
     <hr>
     <div class="row">
-      <% @user_communities.each do |user_community| %>
+      <% @community_in_entries.each do |user_community| %>
         <div class="col-sm-6 col-md-4 mb-4">
           <!-- コミュニティの切り替えを管理するため、#updateへ飛ばしています -->
           <%= link_to user_community_path(user_community), :method => :patch, class: "card img-thumbnail card-body text-dark" do %>

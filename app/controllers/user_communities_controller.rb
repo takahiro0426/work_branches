@@ -9,7 +9,7 @@ class UserCommunitiesController < ApplicationController
 
   def create
     request_community = Community.find_by(community_key: params[:community_key])
-    if error_massage = UserCommunity.error_massege(request_community, params[:community_key], @user_communities)
+    if error_massage = UserCommunity.error_massege(request_community, params[:community_key], @community_in_entries)
       @repuest_community = UserCommunity.new
       flash.now[:danger] = error_massage
       render :new

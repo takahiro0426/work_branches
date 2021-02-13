@@ -3,10 +3,9 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :info, :warning, :danger
 
   before_action :user_communities_index, if: :user_signed_in?
-  # nav-itemの参加中で使用する
+  # @community_inentriesはsign inしている間、常に使用します。
   def user_communities_index
-    @community_in_entries = UserCommunity.where(user_id: current_user.id)
-    @user_communities = Community.where(id: @community_in_entries.pluck(:community_id)).order(updated_at: :desc).first(5)
+    @community_in_entries = Community.where(id: current_user.user_communities.includes(:community).pluck(:community_id)).order(updated_at: :desc).first(5)
   end
 
 end
