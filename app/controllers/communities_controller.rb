@@ -4,15 +4,6 @@ class CommunitiesController < ApplicationController
     @community = Community.find(params[:id])
     @subscribed_user = @community.user_communities.includes(:user)
     @members = User.where(id: @subscribed_user.pluck(:user_id))
-    @posts = @community.community_posts.eager_load(:user, :image_tags).order(created_at: :desc)
-      .page(params[:page]).per(10).search(params[:search])
-    @post_comments = PostComment.eager_load(:user)
-    @new_post = CommunityPost.new
-    if params[:post_community_id]
-      @select_post = CommunityPost.find(params[:post_community_id])
-      @comments = @select_post.post_comments.limit(8).order(created_at: :desc)
-      @new_comment = PostComment.new
-    end
   end
 
   def new
