@@ -17,7 +17,7 @@ class CommunityPostsController < ApplicationController
       @subscribed_user = @community.user_communities.includes(:user)
       @members = User.where(id: @subscribed_user.pluck(:user_id))
       @post_comments = PostComment.eager_load(:user)
-      @posts = @community.community_posts.order(created_at: :desc).page(params[:page]).per(100).search(params[:search])
+      @posts = @community.community_posts.order(created_at: :desc).page(params[:page]).per(10).search(params[:search])
       @new_post = post
       flash.now[:danger] = CommunityPost.create_error_message(post)
       render 'communities/show'
