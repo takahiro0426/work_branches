@@ -5,7 +5,7 @@ class CommunitiesController < ApplicationController
     @subscribed_user = @community.user_communities.includes(:user)
     @members = User.where(id: @subscribed_user.pluck(:user_id))
     @posts = @community.community_posts.eager_load(:user, :image_tags).order(created_at: :desc)
-      .page(params[:page]).per(100).search(params[:search])
+      .page(params[:page]).per(10).search(params[:search])
     @post_comments = PostComment.eager_load(:user)
     @new_post = CommunityPost.new
     if params[:post_community_id]
