@@ -16,11 +16,11 @@ class CommunityPostsController < ApplicationController
       @community = Community.find(params[:community_post][:community_id])
       @subscribed_user = @community.user_communities.includes(:user)
       @members = User.where(id: @subscribed_user.pluck(:user_id))
-      @post_comments = PostComment.eager_load(:user)
-      @posts = @community.community_posts.order(created_at: :desc).page(params[:page]).per(10).search(params[:search])
+      @posts = @community.community_posts.eager_load(:user, :image_tags).order(created_at: :desc)
+        .page(params[:page]).per(10).search(params[:search])
+      @post_comments = PostComment.eager_load(:user).limit(8).order(created_at: :desc)
       @new_post = post
-      flash.now[:danger] = CommunityPost.create_error_message(post)
-      render 'communities/show'
+      redirect_to community_path(params[:community_post][:community_id]), danger: CommunityPost.create_error_message(post)
     end
   end
 

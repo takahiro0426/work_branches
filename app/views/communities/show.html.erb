@@ -52,6 +52,10 @@
   </div>
 <% end %>
 
+<div class="col-lg-4 offset-lg-4">
+  <%= paginate @posts %>
+</div>
+
 <% unless params[:post_community_id] %>
   <%= render 'communities/community_post_form' %>
 <% end %>
