@@ -23,13 +23,13 @@
             参加中
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <% @user_communities.each do |user_community| %>
+            <% @community_in_entries.each do |user_community| %>
             <!-- コミュニティの切り替えを管理するため、#pudateへ飛ばしています -->
             <%= link_to user_community.community_name, user_community_path(user_community), :method => :patch, class: "dropdown-item d-block text-truncate" %>
             <% end %>
             <div class="dropdown-divider"></div>
             <strong>
-              <%= link_to "すべて表示（全#{@user_communities.count}件）", user_communities_path, class: "dropdown-item" %>
+              <%= link_to "すべて表示（全#{@community_in_entries.count}件）", user_communities_path, class: "dropdown-item" %>
             </strong>
           </div>
         </li>

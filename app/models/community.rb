@@ -18,12 +18,12 @@ class Community < ApplicationRecord
     rand(100000..999999)
   end
 
-  def self.already_saved_community_keys
-    all.pluck(:community_key)
-  end
-
   def self.already_exists?(key)
     already_saved_community_keys.include?(key)
+  end
+
+  def self.already_saved_community_keys
+    all.pluck(:community_key)
   end
 
   def self.create_error_message(community)

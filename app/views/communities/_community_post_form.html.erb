@@ -1,7 +1,7 @@
 
 <div class="post_form col-sm-8 bg-white pb-5">
   <div class="border rounded border-success">
-    <%= form_with model: @new_post, url: communities_path, local: true do |f| %>
+    <%= form_with model: @new_post, url: community_posts_path, local: true do |f| %>
       <div class="container-fluid">
         <div class="row pt-1">
           <%= f.label :タイトル, class: "col-sm-3 col-form-label p-0" %>

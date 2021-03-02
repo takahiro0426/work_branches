@@ -37,7 +37,7 @@
           <tbody>
             <tr>
               <!-- PostごとのPostCommentを新しい順に8件取得 -->
-              <% post.post_comments.limit(8).order(created_at: :desc).each do |post_comment| %>
+              <% @post_comments.where(community_post_id: post).each do |post_comment| %>
               <td class="border-right"><%= post_comment.user.name %></td>
               <td class="table_comment"><%= post_comment.comment %></td>
             </tr>
@@ -52,6 +52,10 @@
   </div>
 <% end %>
 
+<div class="col-lg-4 offset-lg-4">
+  <%= paginate @posts %>
+</div>
+
 <% unless params[:post_community_id] %>
-  <%= render 'community_post_form' %>
+  <%= render 'communities/community_post_form' %>
 <% end %>
